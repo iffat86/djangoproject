@@ -1,15 +1,18 @@
-{% extends "base.html" %}
-{% block content %}
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static '/style.css' %}" />
 
      <h1>Question</h1>
         {% if latest_question_list %}
         <ul>
           {% for question in latest_question_list %}
-            <li><a href="/survey/{{question_id}}/">{{question.question_text}}</a></li>
-          {% endfor %}
+           <!------ <li><a href="/survey/{{question_id}}/">{{question.question_text}}</a></li>-->
+          <li>
+            <a href="{% url 'survey:detail' question_id %}">{{question.question_text}}</a>
+          </li>
+           {% endfor %}
         </ul>
         {% else %}
           <p>NO Survey Available</p>
         {% endif %}
         
-{% endblock %}
